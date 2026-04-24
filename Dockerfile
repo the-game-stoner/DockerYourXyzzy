@@ -25,7 +25,7 @@ ENV GIT_BRANCH master
 
 RUN apk add dos2unix git --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted \
   && dos2unix /default.sh /overrides.sh \
-  && git clone -b $GIT_BRANCH https://github.com/ajanata/PretendYoureXyzzy.git /project \
+  && git clone -b $GIT_BRANCH https://github.com/the-game-stoner/Terrible-People.git /project \
   && apk del dos2unix git \
   && chmod +x /default.sh /overrides.sh \
   && mkdir /overrides
@@ -36,13 +36,13 @@ VOLUME [ "/overrides" ]
 WORKDIR /project
 CMD [ "/default.sh" ]
 
-# Build stage for pre-buit image
+# Build stage for pre-built image
 FROM base as builder
 
 ENV GIT_BRANCH master
 
 RUN apk add git --no-cache \
-  && git clone -b $GIT_BRANCH https://github.com/ajanata/PretendYoureXyzzy.git /project
+  && git clone -b $GIT_BRANCH https://github.com/the-game-stoner/Terrible-People.git /project
 
 ADD overrides/settings-docker.xml /usr/share/maven/ref/
 WORKDIR /project
