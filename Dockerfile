@@ -52,7 +52,7 @@ RUN mv build.properties.example build.properties \
 
 
 # Final stage for pre-built image
-FROM jetty:9.4-jre11-slim as prebuilt
+FROM jetty:9.4-jre8-slim as prebuilt
 
 COPY --from=builder /project/target/ZY.war /var/lib/jetty/webapps/ROOT.war
 
